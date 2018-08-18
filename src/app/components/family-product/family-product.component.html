@@ -50,13 +50,13 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="">Family:</label>
-                    <select [(ngModel)]="newFP.family" name="newFamily">
+                    <select [(ngModel)]="newFP.family" class="form-control" name="newFamily">
                         <option *ngFor="let c of families" [ngValue]="c">{{c.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="">Product:</label>
-                    <select [(ngModel)]="newFP.product" name="newProduct">
+                    <select [(ngModel)]="newFP.product" class="form-control" name="newProduct">
                         <option *ngFor="let c of products" [ngValue]="c">{{c.name}}</option>
                     </select>
                 </div>
@@ -85,13 +85,13 @@
             </div>
             <div>
                 <label for="">Family:</label>
-                <select [ngModel]="selected?.family" name="selectedFamily">
+                <select [ngModel]="selected?.family" class="form-control" name="selectedFamily">
                     <option *ngFor="let c of families" [ngValue]="c">{{c.name}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Product:</label>
-                <select [ngModel]="selected?.product" name="selectedProduct">
+                <select [ngModel]="selected?.product" class="form-control" name="selectedProduct">
                     <option *ngFor="let c of products" [ngValue]="c">{{c.name}}</option>
                 </select>
             </div>

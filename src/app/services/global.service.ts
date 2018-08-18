@@ -4,11 +4,8 @@ import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import "rxjs/Rx";
 import {Subject} from "rxjs/Subject";
-import {Book} from "../models/Book";
-import {Http, Response, Headers} from "@angular/http";
-import * as io from 'socket.io-client';
 
-import * as _ from 'lodash'
+import {Http, Response, Headers} from "@angular/http";
 
 
 @Injectable()
@@ -20,12 +17,12 @@ export class GlobalService {
     onUserLoggedCallback: Subject<any> = new Subject<any>();
     onUserLoggedCallback$ = this.onUserLoggedCallback.asObservable();
 
-    constructor(private http: Http) {}
+    constructor(private http: Http) {
+    }
 
     private handleError(error: Response) {
         return Observable.throw(error.statusText);
     }
-
 
 
     signup(email, password) {
@@ -93,24 +90,39 @@ export class GlobalService {
     deleteFamilyProduct(c: any) {
         return this.http.delete('http://localhost:3000/api/familyProduct/' + c._id, c).map(res => res.json());
     }
+
 // Usages
-    getUsages() {
-        return this.http.get('http://localhost:3000/api/usages').map(res => res.json());
+    getClassification() {
+        return this.http.get('http://localhost:3000/api/classification').map(res => res.json());
     }
 
-    createUsages(c: any) {
-        return this.http.post('http://localhost:3000/api/usages', c).map(res => res.json());
+    createClassification(c: any) {
+        return this.http.post('http://localhost:3000/api/classification', c).map(res => res.json());
     }
 
-    updateUsages(c: any) {
-        return this.http.put('http://localhost:3000/api/usages/' + c._id, c).map(res => res.json());
+    updateClassification(c: any) {
+        return this.http.put('http://localhost:3000/api/classification/' + c._id, c).map(res => res.json());
     }
 
-    deleteUsages(c: any) {
-        return this.http.delete('http://localhost:3000/api/usages/' + c._id, c).map(res => res.json());
+    deleteClassification(c: any) {
+        return this.http.delete('http://localhost:3000/api/classification/' + c._id, c).map(res => res.json());
     }
 
+//Applications
+    getApplications() {
+        return this.http.get('http://localhost:3000/api/applications').map(res => res.json());
+    }
 
+    createApplications(c: any) {
+        return this.http.post('http://localhost:3000/api/applications', c).map(res => res.json());
+    }
 
+    updateApplications(c: any) {
+        return this.http.put('http://localhost:3000/api/applications/' + c._id, c).map(res => res.json());
+    }
+
+    deleteApplications(c: any) {
+        return this.http.delete('http://localhost:3000/api/applications/' + c._id, c).map(res => res.json());
+    }
 
 }

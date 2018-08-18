@@ -21,19 +21,16 @@ import {HomeComponent} from './components/home/home.component';
 //import {AddUpdateBookComponent} from "./components/add-update-book/add-update-book.component";
 import {A2Edatetimepicker} from "ng2-eonasdan-datetimepicker";
 import {TitlePipe} from './pipes/title/title.pipe';
-import { ConfirmationModalComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationModalComponent} from './components/confirmation-dialog/confirmation-dialog.component';
 
 import {Authervice} from "./services/auth.service";
-import { ProductsComponent } from './components/products/products.component';
+import {ProductsComponent} from './components/products/products.component';
 
 
-
-
-
-import { FamilyComponent } from './components/family/family.component';
-import { FamilyProductComponent } from './components/family-product/family-product.component';
-import { UsageComponent } from './components/usage/usage.component';
-
+import {FamilyComponent} from './components/family/family.component';
+import {FamilyProductComponent} from './components/family-product/family-product.component';
+import {ClassificationComponent} from './components/classification/classification.component';
+import {ApplicationComponent} from './components/application/application.component';
 
 
 const appRoutes: Routes = [
@@ -43,7 +40,9 @@ const appRoutes: Routes = [
     {path: 'products', component: ProductsComponent},
     {path: 'family', component: FamilyComponent},
     {path: 'familyProduct', component: FamilyProductComponent},
-    {path: 'usage', component: UsageComponent},
+    {path: 'classification', component: ClassificationComponent},
+    {path: 'applications', component: ApplicationComponent},
+
 
 ];
 
@@ -52,19 +51,14 @@ const appRoutes: Routes = [
         AppComponent,
         NavbarComponent,
         NotificationsComponent,
-       // BookComponent,
         HomeComponent,
-        //AddUpdateBookComponent,
         TitlePipe,
         ConfirmationModalComponent,
-
         ProductsComponent,
-
-
-
         FamilyComponent,
         FamilyProductComponent,
-        UsageComponent
+        ClassificationComponent,
+        ApplicationComponent
     ],
     imports: [
         BrowserModule,
