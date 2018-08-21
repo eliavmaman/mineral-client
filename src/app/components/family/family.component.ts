@@ -1,44 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalService} from "../../services/global.service";
 
+declare var $: any;
+
 @Component({
-  selector: 'app-family',
-  templateUrl: './family.component.html',
-  styleUrls: ['./family.component.css']
+    selector: 'app-family',
+    templateUrl: './family.component.html',
+    styleUrls: ['./family.component.css']
 })
 export class FamilyComponent implements OnInit {
-  newF = {
-    name: ''
-  };
-  families: any;
-  selected: any;
-  constructor(private service: GlobalService) { }
+    newF = {
+        name: ''
+    };
+    families: any;
+    selected: any;
 
-  ngOnInit() {
-    this.service.getFamilies().subscribe((res) => {
-      this.families = res;
-    });
+    constructor(private service: GlobalService) {
+    }
 
-  }
-  select(f: any) {
-    this.selected = f;
-  }
+    ngOnInit() {
+        this.service.getFamilies().subscribe((res) => {
+            this.families = res;
+        });
 
-  delete(f: any) {
-    this.service.deleteFamiliy(f).subscribe((res) => {
-      this.ngOnInit();
-    })
-  }
+    }
 
-  create() {
-    this.service.createFamiliy(this.newF).subscribe((res) => {
-      this.ngOnInit();
-    })
-  }
+    select(f: any) {
+        this.selected = f;
+    }
 
-  update() {
-    this.service.updateFamiliy(this.selected).subscribe((res) => {
-      this.ngOnInit();
-    })
-  }
+    delete(f: any) {
+        this.service.deleteFamiliy(f).subscribe((res) => {
+            this.ngOnInit();
+        })
+    }
+
+    create() {
+
+        this.service.createFamiliy(this.newF).subscribe((res) => {
+            this.ngOnInit();
+            $('#createTrigger').click();
+            alert('Action completed successfully');
+        })
+    }
+
+    update() {
+
+        this.service.updateFamiliy(this.selected).subscribe((res) => {
+            this.ngOnInit();
+            $('#editTrigger').click();
+            alert('Action completed successfully');
+        })
+    }
+
+
 }

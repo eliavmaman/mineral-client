@@ -1,79 +1,97 @@
 <h3>Classification</h3>
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let c of classification">
-          <td>{{c?.name}}</td>
+    <div class="row">
+        <div class="col-sm-10">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of classifications">
+                    <td>{{c?.name}}</td>
 
-          <td>
-            <button type="button" class="btn btn-info" data-toggle="modal" (click)="select(c)"
-                    data-target="#edit">Edit
+                    <td>
+                        <button type="button" class="btn btn-info" data-toggle="modal" (click)="select(c)"
+                                data-target="#edit">Edit
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="delete(c)">Delete</button>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#create">Add
             </button>
-            <button type="button" class="btn btn-danger" (click)="delete(c)">Delete</button>
 
-          </td>
-        </tr>
-
-        </tbody>
-      </table>
+        </div>
     </div>
-    <div class="col-sm-2">
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#create">Add
-      </button>
-
-    </div>
-  </div>
 
 </div>
 
 <div id="create" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">New</h4>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" name="newCat" [(ngModel)]="newU.name">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="create()">Save</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form #mfc="ngForm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Name: <span class="red">*</span></label>
+                        <input type="text" required class="form-control" name="newCat" [(ngModel)]="newU.name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" [disabled]="mfc.form.invalid" (click)="create()">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
     </div>
-
-  </div>
 </div>
 
 <div id="edit" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit</h4>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" name="newCat" [ngModel]="selected?.name"
-               (ngModelChange)="selected.name=$event">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="update()">Save</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form #mfe="ngForm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Name: <span class="red">*</span></label>
+                        <input type="text" class="form-control" required name="newCat" [ngModel]="selected?.name"
+                               (ngModelChange)="selected.name=$event">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" [disabled]="mfe.form.invalid" (click)="update()">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
     </div>
-
-  </div>
 </div>
+<button id="createTrigger" type="button" style="display: none" class="btn btn-primary" data-toggle="modal"
+        data-target="#create"></button>
+<button id="editTrigger" type="button" style="display: none" class="btn btn-primary" data-toggle="modal"
+        data-target="#edit"></button>

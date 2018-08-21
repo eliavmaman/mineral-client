@@ -1,44 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalService} from "../../services/global.service";
 
+declare var $: any;
+
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+    selector: 'app-products',
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
 
-  newP = {
-    name: ''
-  };
-  products: any;
-  selected: any;
-  constructor(private service: GlobalService) { }
+    newP = {
+        name: ''
+    };
+    products: any;
+    selected: any;
 
-  ngOnInit() {
-    this.service.getProducts().subscribe((res) => {
-      this.products = res;
-    });
-  }
-  select(f: any) {
-    this.selected = f;
-  }
+    constructor(private service: GlobalService) {
+    }
 
-  delete(f: any) {
-    this.service.deleteProducts(f).subscribe((res) => {
-      this.ngOnInit();
-    })
-  }
+    ngOnInit() {
+        this.service.getProducts().subscribe((res) => {
+            this.products = res;
+        });
+    }
 
-  create() {
-    this.service.createProducts(this.newP).subscribe((res) => {
-      this.ngOnInit();
-    })
-  }
+    select(f: any) {
+        this.selected = f;
+    }
 
-  update() {
-    this.service.updateProducts(this.selected).subscribe((res) => {
-      this.ngOnInit();
-    })
-  }
+    delete(f: any) {
+        this.service.deleteProducts(f).subscribe((res) => {
+            this.ngOnInit();
+        })
+    }
+
+    create() {
+        let existed = this.products.find((f) => {
+            return this.newP.name == f.name;
+        });
+        if (existed) {
+            alert('Name already exist, please select another');
+            return false;
+        }
+        this.service.createProducts(this.newP).subscribe((res) => {
+            this.ngOnInit();
+            $('#createTrigger').click();
+            alert('Action completed successfully');
+        })
+    }
+
+    update() {
+        this.service.updateProducts(this.selected).subscribe((res) => {
+            this.ngOnInit();
+            $('#editTrigger').click();
+            alert('Action completed successfully');
+        })
+    }
 }

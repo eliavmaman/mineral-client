@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalService} from "../../services/global.service";
-
+declare var $:any;
 @Component({
   selector: 'app-classification',
   templateUrl: './classification.component.html',
@@ -31,14 +31,23 @@ export class ClassificationComponent implements OnInit {
   }
 
   create() {
+      let existed = this.classifications.find((f) => {
+          return this.newU.name == f.name;
+      });
+      if (existed) {
+          alert('Name already exist, please select another');
+          return false;
+      }
     this.service.createClassification(this.newU).subscribe((res) => {
       this.ngOnInit();
+        $('#createTrigger').click();
     })
   }
 
   update() {
     this.service.updateClassification(this.selected).subscribe((res) => {
       this.ngOnInit();
+        $('#editTrigger').click();
     })
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalService} from "../../services/global.service";
-
+declare var $:any;
 @Component({
   selector: 'app-family-product',
   templateUrl: './family-product.component.html',
@@ -42,12 +42,14 @@ export class FamilyProductComponent implements OnInit {
   create() {
     this.service.createFamilyProduct(this.newFP).subscribe((res) => {
       this.ngOnInit();
+        $('#createTrigger').click();
     })
   }
 
   update() {
     this.service.updateFamilyProduct(this.selected).subscribe((res) => {
       this.ngOnInit();
+        $('#editTrigger').click();
     })
   }
 

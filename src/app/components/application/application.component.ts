@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {GlobalService} from "../../services/global.service";
 
+declare var $: any;
+
 @Component({
     selector: 'app-application',
     templateUrl: './application.component.html',
@@ -50,12 +52,14 @@ export class ApplicationComponent implements OnInit {
     create() {
         this.service.createApplications(this.newAP).subscribe((res) => {
             this.ngOnInit();
+            $('#createTrigger').click();
         })
     }
 
     update() {
         this.service.updateApplications(this.selected).subscribe((res) => {
             this.ngOnInit();
+            $('#editTrigger').click();
         })
     }
 }
