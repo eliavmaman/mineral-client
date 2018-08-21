@@ -1,36 +1,49 @@
 <h2>Home</h2>
 
-<app-notifications #notification [alertClass]="alertClass" [alertMessage]="alertMessage"
-                   [alertType]="alertType"></app-notifications>
-<div class="alert alert-success" [hidden]="!addedSuccess">
-    <strong>Success!</strong> Indicates a successful or positive action.
-</div>
-
 <div class="row">
-
-    <div class="col-sm-6 col-md-4" *ngFor="let p of products">
-        <div class="thumbnail">
-            <h4 class="text-center"><span class="label label-info">{{p?.category?.name}}</span></h4>
-            <img src={{p?.image}} class="img-responsive">
-            <div class="caption">
-                <div class="row">
-                    <div class="col-md-6 col-xs-6">
-                        <h3>{{p?.name}}</h3>
-                    </div>
-                    <div class="col-md-6 col-xs-6 price">
-                        <h3>
-                            <label>${{p?.price | number}}</label></h3>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <a class="btn btn-success btn-product" (click)="addProduct(p)"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            Buy</a></div>
-                </div>
-                <p></p>
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-thumbs-up"></span> Admin Dashboard</h3>
             </div>
+            <div class="panel-body">
+
+
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        <!-- mred -->
+                        <a [routerLink]="['products']" class="btn btn-lblue btn-lg" role="button"><span class="glyphicon glyphicon-list glyphsize blue"></span> <br /><span class="blue"><br>Products</span></a>
+                        <a [routerLink]="['family']" class="btn btn-lblue btn-lg" role="button"><span class="glyphicon glyphicon-list glyphsize blue"></span> <br /><span class="blue"><br>Family</span></a>
+                        <a [routerLink]="['familyProduct']" class="btn btn-lblue btn-lg" role="button"><span class="glyphicon glyphicon-list glyphsize blue"></span> <br /><span class="blue"><br>Family Product</span></a>
+                        <a [routerLink]="['classification']" class="btn btn-lblue btn-lg" role="button"><span class="glyphicon glyphicon-list glyphsize blue"></span> <br /><span class="blue"><br>Classification</span></a>
+                        <a [routerLink]="['applications']" class="btn btn-lblue btn-lg" role="button"><span class="glyphicon glyphicon-list glyphsize blue"></span> <br /><span class="blue"><br>Applications</span></a>
+
+                    </div>
+                    <!--<div class="col-sm-2 col-xs-12">-->
+                        <!--<a [routerLink]="['products']" class="btn btn-lblue btn-lg" role="button"><span-->
+                                <!--class="glyphicon glyphicon-list glyphsize blue"></span> <br/><span class="blue"><br>Products</span></a>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-2 col-xs-12">-->
+                        <!--<a [routerLink]="['family']" class="btn btn-lblue btn-lg" role="button"><span-->
+                                <!--class="glyphicon glyphicon-list glyphsize blue"></span> <br/><span class="blue"><br>Family</span></a>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-2 col-xs-12">-->
+                        <!--<a [routerLink]="['familyProduct']" class="btn btn-lblue btn-lg" role="button"><span-->
+                                <!--class="glyphicon glyphicon-list glyphsize blue"></span> <br/><span class="blue"><br>Family Product</span></a>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-2 col-xs-12">-->
+                        <!--<a [routerLink]="['classification']" class="btn btn-lblue btn-lg" role="button"><span-->
+                                <!--class="glyphicon glyphicon-list glyphsize blue"></span> <br/><span class="blue"><br>Classification</span></a>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-2 col-xs-12">-->
+                        <!--<a [routerLink]="['applications']" class="btn btn-lblue btn-lg" role="button"><span-->
+                                <!--class="glyphicon glyphicon-list glyphsize blue"></span> <br/><span class="blue"><br>Applications</span></a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
         </div>
     </div>
-
 </div>
